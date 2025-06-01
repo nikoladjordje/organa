@@ -2,7 +2,8 @@ package com.organa.entity;
 
 import java.time.LocalDateTime;
 
-import com.organa.enums.UserOrganizationRole;
+import com.organa.enums.TaskPriority;
+import com.organa.enums.TaskStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,25 +20,32 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_organization")
+@Table(name = "tasks")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserOrganization {
+public class Task {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "organization_id", nullable = false)
-  private Organization organization;
+  @JoinColumn(name = "project_id", nullable = false)
+  private Project project;
+  @ManyToOne
+  @JoinColumn(name = "assignee_id")
+  private User assignee;
+  @Column(length = 150, nullable = false)
+  private String title;
+  @Column(columnDefinition = "TEXT")
+  private String description;
+  @Column(length = 50)
   @Enumerated(EnumType.STRING)
-  private UserOrganizationRole role;
-  private boolean accepted;
-  private LocalDateTime invitedAt;
-  private LocalDateTime acceptedAt;
-  @Column(length = 100, name = "invited_by_email")
-  private String invitedByEmail;
+  private TaskStatus status;
+  private LocalDateTime deadline;
+  @Column(length = 50)
+  @Enumerated(EnumType.STRING)
+  private TaskPriority priority;
+  @Column(nullable = false)
+  private Boolean deleted = false;
+
 }
