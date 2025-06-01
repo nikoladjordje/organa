@@ -1,7 +1,5 @@
 package com.organa.entity;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,25 +13,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_organization")
+@Table(name = "projects")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserOrganization {
+public class Project {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
-  @ManyToOne(optional = false)
   @JoinColumn(name = "organization_id", nullable = false)
   private Organization organization;
-  @Column(length = 50)
-  private String role;
-  private boolean accepted;
-  private LocalDateTime invitedAt;
-  private LocalDateTime acceptedAt;
-  @Column(length = 100, name = "invited_by_email")
-  private String invitedByEmail;
+  @Column(nullable = false, length = 50)
+  private String name;
+  @Column(columnDefinition = "TEXT")
+  private String description;
+  @Column(nullable = false)
+  private Boolean deleted;
+
 }

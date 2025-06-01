@@ -10,12 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// CREATE TABLE users (
-//   id SERIAL PRIMARY KEY,
-//   username VARCHAR(50) UNIQUE NOT NULL,
-//   email VARCHAR(100) UNIQUE NOT NULL,
-//   password VARCHAR(255) NOT NULL
-// );
 @Entity
 @Table(name = "users")
 @Data

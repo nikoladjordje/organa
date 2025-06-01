@@ -10,10 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// CREATE TABLE organizations (
-//   id SERIAL PRIMARY KEY,
-//   name VARCHAR(100) NOT NULL
-// );
 @Entity
 @Table(name = "organizations")
 @Data
