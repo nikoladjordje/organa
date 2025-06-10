@@ -3,6 +3,7 @@ package com.organa.service.impl;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.organa.dto.request.CreateUserOrganizationDTO;
@@ -16,6 +17,7 @@ import com.organa.repository.UserOrganizationRepository;
 import com.organa.repository.UserRepository;
 import com.organa.service.UserOrganizationService;
 
+@Service
 public class UserOrganizationServiceImpl implements UserOrganizationService {
 
   private final UserOrganizationRepository userOrganizationRepository;

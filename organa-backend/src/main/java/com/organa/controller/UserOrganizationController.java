@@ -15,7 +15,7 @@ import com.organa.dto.response.UserOrganizationResponseDTO;
 import com.organa.service.UserOrganizationService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user-orgs")
 public class UserOrganizationController {
   private final UserOrganizationService userOrganizationService;
 
