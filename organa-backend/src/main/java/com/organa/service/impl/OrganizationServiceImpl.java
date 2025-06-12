@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.organa.dto.request.CreateOrganizationDTO;
+import com.organa.dto.request.create.CreateOrganizationDTO;
 import com.organa.entity.Organization;
 import com.organa.mapper.OrganizationMapper;
 import com.organa.repository.OrganizationRepository;

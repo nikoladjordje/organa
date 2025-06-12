@@ -22,22 +22,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActivityLog {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  @ManyToOne
-  @JoinColumn(name = "project_id")
-  private Project project;
-  @ManyToOne
-  @JoinColumn(name = "task_id")
-  private Task task;
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id")
-  private User user;
-  @Column(length = 255, nullable = false)
-  private String action;
-  @Column(nullable = false, updatable = false)
-  @CreationTimestamp
-  private LocalDateTime timestamp;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+    @Column(length = 255, nullable = false)
+    private String action;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime timestamp;
 
 }

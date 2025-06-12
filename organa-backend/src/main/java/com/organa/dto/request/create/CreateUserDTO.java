@@ -1,4 +1,4 @@
-package com.organa.dto.request;
+package com.organa.dto.request.create;
 
 import java.util.Objects;
 

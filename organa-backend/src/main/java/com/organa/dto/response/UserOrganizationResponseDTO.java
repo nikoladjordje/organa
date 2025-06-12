@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import com.organa.enums.UserOrganizationRole;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
+@Builder
 public record UserOrganizationResponseDTO(
     @Schema(description = "Id of the user-organization relation") Long id,
     @Schema(description = "Id of the user") Long userId,
