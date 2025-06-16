@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.organa.dto.request.CreateUserOrganizationDTO;
+import com.organa.dto.request.create.CreateUserOrganizationDTO;
 import com.organa.dto.response.UserOrganizationResponseDTO;
 import com.organa.service.UserOrganizationService;
 

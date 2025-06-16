@@ -6,12 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.organa.dto.request.CreateUserDTO;
+import com.organa.dto.request.create.CreateUserDTO;
+import com.organa.dto.request.update.UpdateUserDTO;
 import com.organa.dto.response.UserResponseDTO;
 import com.organa.entity.User;
 import com.organa.mapper.UserMapper;
 import com.organa.repository.UserRepository;
 import com.organa.service.UserService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,4 +47,26 @@ public class UserServiceImpl implements UserService {
     return userMapper.toResponseDTOList(users);
   }
 
+  @Override
+  public UserResponseDTO updateUser(Long id, UpdateUserDTO dto) {
+    User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+    if (dto.username() != null && !dto.username().isBlank())
+      user.setUsername(dto.username());
+    if (dto.email() != null && !dto.email().isBlank())
+      user.setEmail(dto.email());
+    if (dto.password() != null && !dto.password().isBlank())
+      user.setPassword(dto.password());
+
+    userRepository.save(user);
+    return userMapper.toResponseDTO(user);
+  }
+
+  @Override
+  public void deleteUser(Long id) {
+    if (!userRepository.existsById(id)) {
+      throw new EntityNotFoundException("User with id " + id + " not found");
+    }
+    userRepository.deleteById(id);
+  }
 }

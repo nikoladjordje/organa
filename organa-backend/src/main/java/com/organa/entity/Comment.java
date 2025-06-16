@@ -22,19 +22,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "task_id", nullable = false)
-  private Task task;
-  @Column(columnDefinition = "TEXT", nullable = false)
-  private String content;
-  @Column(nullable = false, updatable = false)
-  @CreationTimestamp
-  private LocalDateTime createdAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 }

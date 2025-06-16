@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.organa.dto.request.CreateUserDTO;
+import com.organa.dto.request.create.CreateUserDTO;
 import com.organa.dto.response.UserResponseDTO;
 import com.organa.entity.User;
 

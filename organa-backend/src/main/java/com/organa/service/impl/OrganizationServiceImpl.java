@@ -6,11 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.organa.dto.request.CreateOrganizationDTO;
+import com.organa.dto.request.create.CreateOrganizationDTO;
+import com.organa.dto.request.update.UpdateOrganizationDTO;
 import com.organa.entity.Organization;
 import com.organa.mapper.OrganizationMapper;
 import com.organa.repository.OrganizationRepository;
 import com.organa.service.OrganizationService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
@@ -24,8 +27,8 @@ public class OrganizationServiceImpl implements OrganizationService {
   }
 
   @Override
-  public Organization createOrganization(CreateOrganizationDTO createOrganizationDTO) {
-    Organization organization = organizationMapper.toEntity(createOrganizationDTO);
+  public Organization createOrganization(CreateOrganizationDTO dto) {
+    Organization organization = organizationMapper.toEntity(dto);
     organization = organizationRepository.save(organization);
     return organization;
   }
@@ -42,4 +45,25 @@ public class OrganizationServiceImpl implements OrganizationService {
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     return organization;
   }
+
+  @Override
+  public void deleteOrganization(Long id) {
+    if (!organizationRepository.existsById(id)) {
+      throw new EntityNotFoundException("Organization with id " + id + " not found");
+    }
+    organizationRepository.deleteById(id);
+  }
+
+  @Override
+  public Organization updateOrganization(Long id, UpdateOrganizationDTO dto) {
+    Organization organization = organizationRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Organization not found"));
+    if (dto.name() != null && !dto.name().isBlank())
+      organization.setName(dto.name());
+
+    organizationRepository.save(organization);
+
+    return null;
+  }
+
 }

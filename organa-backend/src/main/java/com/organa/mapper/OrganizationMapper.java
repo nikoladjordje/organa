@@ -2,7 +2,7 @@ package com.organa.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.organa.dto.request.CreateOrganizationDTO;
+import com.organa.dto.request.create.CreateOrganizationDTO;
 import com.organa.entity.Organization;
 
 @Component
