@@ -7,15 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.organa.dto.request.create.CreateUserOrganizationDTO;
+import com.organa.dto.request.update.UpdateUserOrganizationDTO;
 import com.organa.dto.response.UserOrganizationResponseDTO;
 import com.organa.entity.Organization;
 import com.organa.entity.User;
 import com.organa.entity.UserOrganization;
+import com.organa.mapper.UserMapper;
 import com.organa.mapper.UserOrganizationMapper;
 import com.organa.repository.OrganizationRepository;
 import com.organa.repository.UserOrganizationRepository;
 import com.organa.repository.UserRepository;
 import com.organa.service.UserOrganizationService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserOrganizationServiceImpl implements UserOrganizationService {
@@ -55,6 +59,25 @@ public class UserOrganizationServiceImpl implements UserOrganizationService {
   public UserOrganizationResponseDTO getUserOrganizationById(Long id) {
     UserOrganization userOrg = userOrganizationRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User-organization not found"));
+
+    return userOrganizationMapper.toResponseDTO(userOrg);
+  }
+
+  @Override
+  public void deleteUserOrganization(Long id) {
+
+    if (!userOrganizationRepository.existsById(id))
+      throw new EntityNotFoundException("User-organization not found");
+    userOrganizationRepository.deleteById(id);
+  }
+
+  @Override
+  public UserOrganizationResponseDTO updateUserOrganization(Long id, UpdateUserOrganizationDTO dto) {
+    UserOrganization userOrg = userOrganizationRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("User-organization not found"));
+
+    if (dto.role() != null)
+      userOrg.setRole(dto.role());
 
     return userOrganizationMapper.toResponseDTO(userOrg);
   }
