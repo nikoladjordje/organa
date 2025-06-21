@@ -5,7 +5,6 @@ import java.util.List;
 import com.organa.dto.request.create.CreateUserDTO;
 import com.organa.dto.request.update.UpdateUserDTO;
 import com.organa.dto.response.UserResponseDTO;
-import com.organa.entity.User;
 
 public interface UserService {
 

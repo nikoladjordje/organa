@@ -12,7 +12,6 @@ import com.organa.dto.response.UserOrganizationResponseDTO;
 import com.organa.entity.Organization;
 import com.organa.entity.User;
 import com.organa.entity.UserOrganization;
-import com.organa.mapper.UserMapper;
 import com.organa.mapper.UserOrganizationMapper;
 import com.organa.repository.OrganizationRepository;
 import com.organa.repository.UserOrganizationRepository;
