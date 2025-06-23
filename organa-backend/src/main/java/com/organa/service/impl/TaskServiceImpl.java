@@ -90,6 +90,7 @@ public class TaskServiceImpl implements TaskService {
     if (dto.priority() != null)
       task.setPriority(dto.priority());
 
+    taskRepository.save(task);
     return taskMapper.toResponseDTO(task);
   }
 

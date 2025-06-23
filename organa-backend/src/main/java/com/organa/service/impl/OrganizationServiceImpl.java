@@ -62,7 +62,6 @@ public class OrganizationServiceImpl implements OrganizationService {
       organization.setName(dto.name());
 
     organizationRepository.save(organization);
-
     return null;
   }
 

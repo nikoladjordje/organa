@@ -77,6 +77,7 @@ public class CommentServiceImpl implements CommentService {
     if (dto.content() != null && !dto.content().isBlank())
       comment.setContent(dto.content());
 
+    commentRepository.save(comment);
     return commentMapper.toResponseDTO(comment);
   }
 

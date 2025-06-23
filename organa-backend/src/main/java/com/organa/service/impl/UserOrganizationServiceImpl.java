@@ -78,6 +78,7 @@ public class UserOrganizationServiceImpl implements UserOrganizationService {
     if (dto.role() != null)
       userOrg.setRole(dto.role());
 
+    userOrganizationRepository.save(userOrg);
     return userOrganizationMapper.toResponseDTO(userOrg);
   }
 
